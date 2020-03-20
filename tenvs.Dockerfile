@@ -1,4 +1,4 @@
-FROM tradingai/bazel:latest
+FROM tradingai/tenvs:latest
 
 # 更换为阿里云境像
 RUN sed -i "s/archive.ubuntu.com/mirrors.aliyun.com/g" /etc/apt/sources.list
