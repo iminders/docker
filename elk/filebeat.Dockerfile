@@ -2,5 +2,5 @@
 
 FROM elastic/filebeat:7.6.2
 
-# ENTRYPOINT ["/usr/local/bin/docker-entrypoint"]
-# CMD ["-e"]
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint"]
+CMD ["-e"]
