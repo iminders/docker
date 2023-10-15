@@ -5,8 +5,13 @@ FROM ubuntu:20.04
 ENV BAZEL_VERSION 5.2.0
 ENV PYTHON_VERSION 3.8.0
 
+RUN apt-get update
 
-RUN (apt-get update && apt-get install -y --no-install-recommends \
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata
+RUN ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN dpkg-reconfigure --frontend noninteractive tzdata
+
+RUN (apt-get install -y --no-install-recommends \
         ca-certificates \
         build-essential \
         software-properties-common \
@@ -24,10 +29,6 @@ RUN (apt-get update && apt-get install -y --no-install-recommends \
         openjdk-11-jdk \
         g++ unzip zip \
         openjdk-11-jre-headless)
-
-RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata
-RUN ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-RUN dpkg-reconfigure --frontend noninteractive tzdata
 
 
 # Install Python
