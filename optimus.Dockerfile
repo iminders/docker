@@ -25,6 +25,10 @@ RUN (apt-get update && apt-get install -y --no-install-recommends \
         g++ unzip zip \
         openjdk-11-jre-headless)
 
+RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata
+RUN ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+RUN dpkg-reconfigure --frontend noninteractive tzdata
+
 
 # Install Python
 WORKDIR /tmp/
