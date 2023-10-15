@@ -1,6 +1,6 @@
 # last modified: 2023.10.15
 
-FROM ubuntu:22.04
+FROM ubuntu:20.04
 
 ENV BAZEL_VERSION 5.2.0
 ENV PYTHON_VERSION 3.8.0
