@@ -33,7 +33,6 @@ RUN tar -zxvf Python-$PYTHON_VERSION.tgz
 WORKDIR /tmp/Python-$PYTHON_VERSION
 RUN apt-get update -y && apt-get upgrade -y && apt-get dist-upgrade -y
 
-RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata
 RUN timedatectl set-timezone Asia/Shanghai
 
 
