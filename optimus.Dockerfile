@@ -21,7 +21,7 @@ RUN (apt-get update && apt-get install -y --no-install-recommends \
         pkg-config \
         zlib1g-dev \
         openssh-client \
-        g++ unzip zip
+        g++ unzip zip)
 
 # Install Python
 WORKDIR /tmp/
