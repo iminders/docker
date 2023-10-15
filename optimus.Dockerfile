@@ -34,8 +34,7 @@ WORKDIR /tmp/Python-$PYTHON_VERSION
 RUN apt-get update -y && apt-get upgrade -y && apt-get dist-upgrade -y
 
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata
-RUN ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
-RUN dpkg-reconfigure --frontend noninteractive tzdata
+RUN timedatectl set-timezone Asia/Shanghai
 
 
 
