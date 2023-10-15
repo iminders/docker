@@ -21,9 +21,7 @@ RUN (apt-get update && apt-get install -y --no-install-recommends \
         pkg-config \
         zlib1g-dev \
         openssh-client \
-        openjdk-11-jdk \
-        g++ unzip zip \
-        openjdk-11-jre-headless)
+        g++ unzip zip
 
 # Install Python
 WORKDIR /tmp/
