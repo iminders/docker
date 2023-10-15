@@ -13,13 +13,6 @@ RUN (apt-get update && apt-get install -y --no-install-recommends \
         curl \
         wget \
         git \
-        gnupg \
-        libopenblas-dev \
-        liblapack-dev \
-        libssl-dev \
-        libmetis-dev \
-        pkg-config \
-        zlib1g-dev \
         openssh-client \
         g++ unzip zip)
 
