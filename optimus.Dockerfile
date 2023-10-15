@@ -5,6 +5,26 @@ FROM ubuntu:22.04
 ENV BAZEL_VERSION 5.2.0
 ENV PYTHON_VERSION 3.8.0
 
+
+RUN (apt-get update && apt-get install -y --no-install-recommends \
+        ca-certificates \
+        build-essential \
+        software-properties-common \
+        curl \
+        wget \
+        git \
+        gnupg \
+        libopenblas-dev \
+        liblapack-dev \
+        libssl-dev \
+        libmetis-dev \
+        pkg-config \
+        zlib1g-dev \
+        openssh-client \
+        openjdk-11-jdk \
+        g++ unzip zip \
+        openjdk-11-jre-headless)
+
 # Install Python
 WORKDIR /tmp/
 RUN (wget -P /tmp https://www.python.org/ftp/python/$PYTHON_VERSION/Python-$PYTHON_VERSION.tgz)
