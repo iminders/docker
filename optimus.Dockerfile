@@ -33,10 +33,6 @@ RUN tar -zxvf Python-$PYTHON_VERSION.tgz
 WORKDIR /tmp/Python-$PYTHON_VERSION
 RUN apt-get update -y && apt-get upgrade -y && apt-get dist-upgrade -y
 
-RUN timedatectl set-timezone Asia/Shanghai
-
-
-
 RUN apt-get install -y --no-install-recommends libbz2-dev libncurses5-dev libgdbm-dev libgdbm-compat-dev liblzma-dev libsqlite3-dev libssl-dev openssl tk-dev uuid-dev libreadline-dev
 RUN apt-get install -y --no-install-recommends libffi-dev
 RUN ./configure --prefix=/usr/local/python3 && \
