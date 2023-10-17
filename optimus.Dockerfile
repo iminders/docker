@@ -21,6 +21,7 @@ RUN (apt-get install -y --no-install-recommends \
         gnupg \
         libopenblas-dev \
         liblapack-dev \
+        libboost-all-dev \
         libssl-dev \
         libmetis-dev \
         pkg-config \
@@ -59,8 +60,8 @@ RUN bash /tmp/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh
 
 # clean
 RUN rm -rf /tmp/* && \
-rm -rf /var/lib/apt/lists/* && \
-rm -rf /root/.cache/pip
+        rm -rf /var/lib/apt/lists/* && \
+        rm -rf /root/.cache/pip
 
 WORKDIR /root
 
