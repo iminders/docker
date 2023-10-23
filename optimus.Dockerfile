@@ -19,6 +19,7 @@ RUN (apt-get install -y --no-install-recommends \
         wget \
         git \
         gnupg \
+        hdf5-tools \
         libopenblas-dev \
         liblapack-dev \
         libboost-all-dev \
