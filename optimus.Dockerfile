@@ -21,6 +21,7 @@ RUN (apt-get install -y --no-install-recommends \
         gnupg \
         hdf5-tools \
         libhdf5-serial-dev \
+        gfortran \
         libopenblas-dev \
         liblapack-dev \
         libboost-all-dev \
@@ -60,6 +61,9 @@ RUN (pip install grpcio numpy && touch /root/WORKSPACE)
 RUN (wget -P /tmp https://github.com/bazelbuild/bazel/releases/download/$BAZEL_VERSION/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh)
 RUN (chmod +x /tmp/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh)
 RUN bash /tmp/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh
+
+RUN (git clone https://github.com/xianyi/OpenBLAS.git)
+RUN (cd OpenBLAS && make FC=gfortran && make PREFIX=/usr/local install)
 
 # clean
 RUN rm -rf /tmp/* && \

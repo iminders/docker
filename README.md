@@ -15,10 +15,13 @@
   - `registry.cn-hangzhou.aliyuncs.com/tradingai/tweb:latest`
 
 - ELK(kafka+filebeat and Elastic Stack)
-    - apache: `registry.cn-hangzhou.aliyuncs.com/tradingai/elk:apache.latest`
-    - elasticsearch: `registry.cn-hangzhou.aliyuncs.com/tradingai/elk:elasticsearch.latest`
-    - filebeat: `registry.cn-hangzhou.aliyuncs.com/tradingai/elk:filebeat.latest`
-    - kafka: `registry.cn-hangzhou.aliyuncs.com/tradingai/elk:kafka.latest`
-    - kibana: `registry.cn-hangzhou.aliyuncs.com/tradingai/elk:kibana.latest`
-    - logstash: `registry.cn-hangzhou.aliyuncs.com/tradingai/elk:logstash.latest`
-    - zookeeper: `registry.cn-hangzhou.aliyuncs.com/tradingai/elk:zookeeper.latest`
+  - apache: `registry.cn-hangzhou.aliyuncs.com/tradingai/elk:apache.latest`
+  - elasticsearch: `registry.cn-hangzhou.aliyuncs.com/tradingai/elk:elasticsearch.latest`
+  - filebeat: `registry.cn-hangzhou.aliyuncs.com/tradingai/elk:filebeat.latest`
+  - kafka: `registry.cn-hangzhou.aliyuncs.com/tradingai/elk:kafka.latest`
+  - kibana: `registry.cn-hangzhou.aliyuncs.com/tradingai/elk:kibana.latest`
+  - logstash: `registry.cn-hangzhou.aliyuncs.com/tradingai/elk:logstash.latest`
+  - zookeeper: `registry.cn-hangzhou.aliyuncs.com/tradingai/elk:zookeeper.latest`
+
+- [optimus](https://cr.console.aliyun.com/repository/cn-hangzhou/aiminders/optimus/build)
+  - `registry.cn-hangzhou.aliyuncs.com/aiminders/optimus:latest`
