@@ -20,9 +20,11 @@ RUN (apt-get install -y --no-install-recommends \
         git \
         gnupg \
         hdf5-tools \
+        libhdf5-serial-dev \
         libopenblas-dev \
         liblapack-dev \
         libboost-all-dev \
+        libzmq3-dev \
         libssl-dev \
         libmetis-dev \
         pkg-config \
