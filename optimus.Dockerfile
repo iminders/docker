@@ -1,15 +1,10 @@
-# last modified: 2023.10.23
+# last modified: 2025.03.02
 
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
-# 2023.10.23
-# ENV BAZEL_VERSION 5.2.0
-# 2024.03.24
-ENV BAZEL_VERSION 7.1.1
-ENV PYTHON_VERSION 3.8.0
+ENV PYTHON_VERSION 3.11.11
 
 RUN apt-get update
-
 RUN export DEBIAN_FRONTEND=noninteractive && apt-get install -y tzdata
 RUN ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN dpkg-reconfigure --frontend noninteractive tzdata
@@ -19,6 +14,11 @@ RUN (apt-get install -y --no-install-recommends \
         build-essential \
         software-properties-common \
         curl \
+        cmake \
+        lcov \
+        valgrind \
+        gettext-base \
+        jq \
         wget \
         git \
         gnupg \
@@ -59,14 +59,42 @@ RUN update-alternatives --config pip
 RUN pip install --upgrade pip
 RUN (pip install grpcio numpy && touch /root/WORKSPACE)
 
+# 更换默认pip源
+RUN mkdir /root/.pip
+RUN echo "[global]" >> /root/.pip/pip.conf
+RUN echo "index-url=http://mirrors.aliyun.com/pypi/simple/" >> /root/.pip/pip.conf
+RUN echo "trusted-host=mirrors.aliyun.com" >> /root/.pip/pip.conf
+
 
 # Install bazel
-RUN (wget -P /tmp https://github.com/bazelbuild/bazel/releases/download/$BAZEL_VERSION/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh)
-RUN (chmod +x /tmp/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh)
-RUN bash /tmp/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh
+# ENV BAZEL_VERSION 8.1.1
+# RUN (wget -P /tmp https://github.com/bazelbuild/bazel/releases/download/$BAZEL_VERSION/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh)
+# RUN (chmod +x /tmp/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh)
+# RUN bash /tmp/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh
 
 RUN (git clone https://github.com/xianyi/OpenBLAS.git)
 RUN (cd OpenBLAS && make FC=gfortran && make PREFIX=/usr/local install)
+
+# GoogleTest v1.16.0
+RUN git clone -q https://github.com/google/googletest.git /tmp/googletest
+RUN cd /tmp/googletest \
+       && git checkout v1.16.0 \
+       && mkdir -p /tmp/googletest/build \
+       && cd /tmp/googletest/build \
+       && cmake .. && make && make install \
+       && rm -rf /tmp/googletest
+
+
+# Google benchmark v1.9.1
+RUN git clone -q https://github.com/google/benchmark.git /tmp/benchmark
+RUN cd /tmp/benchmark \
+       && git checkout v1.9.1 \
+       && mkdir -p /tmp/benchmark/build \
+       && cd /tmp/benchmark/build \
+       && cmake -DCMAKE_BUILD_TYPE=Release -DBENCHMARK_ENABLE_GTEST_TESTS=ON \
+          -DBENCHMARK_DOWNLOAD_DEPENDENCIES=OFF -DCMAKE_INSTALL_PREFIX=/usr/local .. \
+       && make install \
+       && rm -rf /tmp/benchmark
 
 # clean
 RUN rm -rf /tmp/* && \
